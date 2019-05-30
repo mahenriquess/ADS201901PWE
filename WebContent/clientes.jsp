@@ -104,7 +104,7 @@
 		</div>
 		<p>
 		  <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#collapseGridClientes" aria-expanded="false" aria-controls="collapseGridClientes">
-		    Visualizar Clientes
+		    Ver Clientes Cadastrados
 		  </button>
 		</p>
 		<div class="collapse" id="collapseGridClientes">
