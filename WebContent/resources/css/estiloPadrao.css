@@ -1,0 +1,37 @@
+@font-face {
+	font-family: Montserrat;
+  	src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+* {
+	margin: 0; 
+	padding: 0;
+	
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	background-color: #008080;
+}
+
+a {
+	color: inherit;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.pagina {
+	background-color: #00cccc;
+	padding: 0.5rem;
+	margin: 1rem auto;
+	border-radius: 1rem;
+}
+
+.card-veiculo {
+	padding: 0.5rem;
+	margin: 1rem 0;
+	border-bottom: 2px solid #008080;
+}
+

@@ -1,0 +1,33 @@
+.loginTela {
+	width: 80%;
+	background-color: #00cccc;
+	border-radius: 2rem;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.loginTela input {
+	width: 80%;
+	margin: 1rem auto;
+	padding: 1rem;
+
+}
+
+@media screen and (min-width: 680px) {
+	.loginTela {
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 980px) {
+	.loginTela {
+		width: 60%;
+	}
+	
+	.loginTela input {
+		width: 60%;
+	}
+}

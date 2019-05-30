@@ -1,0 +1,15 @@
+.menuBarraCor {
+	background-color: #00cccc !important;
+}
+
+.info {
+	text-align: center;
+}
+
+.link-disabled {
+	display: none;
+}
+
+.sessaoHorario {
+	font-size: 0.7rem;
+}

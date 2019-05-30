@@ -1,0 +1,36 @@
+.btn-collapse{
+	width: 80%;
+	font-size: 1.5rem;
+}
+
+.item-lista:hover {
+	background-color: #00cccc;
+	transition: 0.5s;
+	border: 1px solid #008080;
+	border-radius: 1rem;
+}
+
+.radio-buttons {
+	width: 100%;
+	text-align: left;
+}
+
+.radio-buttons input {
+	width: 20px;
+	height: 20px;
+}
+
+.radio-buttons ul {
+	list-style: none;
+}
+
+.radio-buttons li {
+	display: block;
+	padding: 1rem;
+}
+
+@media screen and (min-width: 720px) {
+	.radio-buttons li {
+		display: inline-block;
+	}
+}
