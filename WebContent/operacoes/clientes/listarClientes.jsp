@@ -1,9 +1,6 @@
-<%@page import="java.util.Calendar"%>
-<%@page import="java.util.GregorianCalendar"%>
-<%@page import="dao.CategoriaVeiculosDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entidades.Cliente."%>
+<%@page import="entidades.Cliente"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dao.ClienteDAO"%>
 
@@ -61,7 +58,7 @@
 			   			</label>
 			   			<label for="modal-telefone">
 			    			<p>Telefone:
-			    				<input class="form-control" type="text" id="modal-email" placeholder="ex.: seunome@algumacoisa.com.br" required />
+			    				<input class="form-control" type="text" id="modal-telefone" placeholder="ex.: (11) 99999-9999" required />
 			    			</p>
 			   			</label>
 			   			<label for="modal-sexo">
@@ -86,7 +83,7 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="btn-remove-cliente">Excluir Veículo</button>
+        <button type="button" class="btn btn-danger" id="btn-remove-cliente">Excluir Cliente</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary" id="btn-atualiza-cliente">Salvar Alterações</button>
       </div>
@@ -118,26 +115,23 @@
 			String cliCPF = rs.getString("cliCPF");
 			String cliRG = rs.getString("cliRG");
 			String cliEmail = rs.getString("cliEmail");
-			String cliTelefone = rs.getcliing("cliTelefone");
+			String cliTelefone = rs.getString("cliTelefone");
 			String cliSexo = rs.getString("cliSexo");
 			String cliAtivo = rs.getString("cliAtivo");
 			
 			String classeLink = "btn "; 
-			classeLink += cliSituacao.equals("Disponível") ? "btn-success" : "btn-danger";
+			classeLink += cliAtivo.equals("S") ? "btn-success" : "btn-danger";
 			classeLink += " btn-seleciona";
 			
 			out.println("<tr>");
 				out.println("<td><a class='"+ classeLink + "' role='button' rel='" + cliID + "' href='#'>" + cliID + "</a></td>");
-				out.println("<td>" + cliSituacao + "</td>");
-				out.println("<td>" + cliPlaca + "</td>");
-				out.println("<td>" + cliMarca + "</td>");
-				out.println("<td>" + cliModelo + "</td>");
-				out.println("<td>" + cliCor + "</td>");
-				out.println("<td>" + cliCategoria + "</td>");
-				out.println("<td>" + cliAno + "</td>");
-				out.println("<td>" + cliValorLocacao + "</td>");
-				out.println("<td>" + cliCombustivel + "</td>");
-				out.println("<td>" + cliObservacao + "</td>");
+				out.println("<td>" + cliNome + "</td>");
+				out.println("<td>" + cliCPF + "</td>");
+				out.println("<td>" + cliRG + "</td>");
+				out.println("<td>" + cliEmail + "</td>");
+				out.println("<td>" + cliTelefone + "</td>");
+				out.println("<td>" + cliSexo + "</td>");
+				out.println("<td>" + cliAtivo + "</td>");
 			out.println("</tr>");
 		}
 	} catch (SQLException e) {
@@ -149,7 +143,7 @@
 	</table>
 	<script>
 	$(document).ready( function () {
-	    $('#tabListaVeiculos').DataTable({
+	    $('#tabListaClientes').DataTable({
 	    	responsive: true,
 	    	"aoColumnDefs": [
                 { 
@@ -161,7 +155,7 @@
             "bPaginate": true,
             "oLanguage": {
                   "sEmptyTable": "Nenhum registro encontrado",
-                  "sInfo": "Veículos cadastrados no sistema",
+                  "sInfo": "Clientes cadastrados no sistema",
                   "sInfoEmpty": "Mostrando 0 até de 0 registros",
 				"sInfoFiltered": "(Filtrados de _MAX_ registros)", 
                   "sInfoPostFix": "",
