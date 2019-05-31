@@ -38,7 +38,7 @@
 			</a></li>
 			
 			<li class="nav-item active"><a class="nav-link"
-				href="dashboard.jsp"><i class="fas fa-money-check-alt"></i>  Locações <span class="sr-only">(current)</span>
+				href="locacoes.jsp"><i class="fas fa-money-check-alt"></i>  Locações <span class="sr-only">(current)</span>
 			</a></li>
 				
 			<li class="nav-item active"><a class="nav-link"
