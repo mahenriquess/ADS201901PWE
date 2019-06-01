@@ -34,7 +34,7 @@
 			</a></li>
 			
 			<li class="nav-item active <%=link %>"><a class="nav-link"
-				href="dashboard.jsp"><i class="fas fa-id-card"></i>  Funcionários <span class="sr-only">(current)</span>
+				href="funcionarios.jsp"><i class="fas fa-id-card"></i>  Funcionários <span class="sr-only">(current)</span>
 			</a></li>
 			
 			<li class="nav-item active"><a class="nav-link"

@@ -1,20 +1,20 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entidades.Cliente"%>
+<%@page import="entidades.Funcionario"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="dao.ClienteDAO"%>
+<%@page import="dao.FuncionarioDAO"%>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/jquery/jquery.dataTables.min.css" />
 <%
-	ClienteDAO cliDAO = new ClienteDAO();
-	ResultSet rs = cliDAO.selecionarClientes("");
+	FuncionarioDAO funcDAO = new FuncionarioDAO();
+	ResultSet rs = funcDAO.selecionarFuncionarios("");
 %>
 
-<div class="modal" tabindex="-1" role="dialog" id="modalSelecionaCliente">
+<div class="modal" tabindex="-1" role="dialog" id="modalSelecionaFuncionario">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">DADOS DO CLIENTE SELECIONADO</h5>
+        <h5 class="modal-title">DADOS DO FUNCIONARIO SELECIONADO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -37,39 +37,34 @@
         	</div>
         	<div class="row">
 		    	<div class="col">
-		   			<label for="modelo-cpf">
-		    			<p>CPF:
-		    				<input class="form-control" type="text" id="modal-cpf" placeholder=" ex.: 123.456.789-01" size="15" maxlength="15" readonly="true" />
+		   			<label for="modal-username">
+		    			<p>Nome de Usuário:
+		    				<input class="form-control" type="text" id="modal-username" placeholder=" ex.: username" size="15" maxlength="15" />
 		   				</p>
 		   			</label>
-		   			<label for="modal-rg">
-		    			<p>RG:
-		    				<input class="form-control" type="text" id="modal-rg" placeholder=" ex.: 12.345.678-3" size="15" maxlength="15" required />
+		   			<label for="modal-password">
+		    			<p>Senha:
+		    				<input class="form-control" type="text" id="modal-password" placeholder="-----------" size="15" maxlength="15" required />
 		   				</p>
 		   			</label>
 	   			</div>
 	   		</div>
 	   		<div class="row">
-		   			<div class="col">
-			   			<label for="modal-email">
-			    			<p>E-mail:
-			    				<input class="form-control" type="text" id="modal-email" placeholder="ex.: seunome@algumacoisa.com.br" required />
-			   				</p>
-			   			</label>
-			   			<label for="modal-telefone">
-			    			<p>Telefone:
-			    				<input class="form-control" type="text" id="modal-telefone" placeholder="ex.: (11) 99999-9999" required />
-			    			</p>
-			   			</label>
+		   		<div class="col">
+		   			<label for="modal-email">
+		    			<p>E-mail:
+		    				<input class="form-control" type="text" id="modal-email" placeholder="ex.: seunome@algumacoisa.com.br" required />
+		   				</p>
+		   			</label>
 				</div>
 			</div>   			
 			<div class="row">
 		   			<div class="col">
-			   			<label for="modal-sexo">
-			    			<p>Sexo:
-			    				<select class="form-control" id="modal-sexo" required >
-			    					<option value="M">Masculino</option>
-			    					<option value="F">Feminino</option>
+			   			<label for="modal-status">
+			    			<p>Status:
+			    				<select class="form-control" id="modal-status" required >
+			    					<option value="A">Admin</option>
+			    					<option value="B">Padrão</option>
 			    				</select>
 			   				</p>
 			   			</label>
@@ -88,22 +83,21 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" id="btn-atualiza-cliente">Salvar Alterações</button>
+        <button type="button" class="btn btn-primary" id="btn-atualiza-funcionario">Salvar Alterações</button>
       </div>
     </div>
   </div>
 </div>
 	<p id="modal-loader"></p>
-	<table class="table table-responsive border" id="tabListaClientes">
+	<table class="table table-responsive border" id="tabListaFuncionarios">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>NOME</th>
-				<th>CPF</th>
-				<th>RG</th>
+				<th>USUARIO</th>
+				<th>PASSWORD</th>
 				<th>EMAIL</th>
-				<th>TELEFONE</th>
-				<th>SEXO</th>
+				<th>STATUS</th>
 				<th>ATIVO</th>
 			</tr>
 		</thead>
@@ -113,28 +107,26 @@
 		
 		
 		while(rs.next()){
-			String cliID = rs.getString("cliID");
-			String cliNome = rs.getString("cliNome");
-			String cliCPF = rs.getString("cliCPF");
-			String cliRG = rs.getString("cliRG");
-			String cliEmail = rs.getString("cliEmail");
-			String cliTelefone = rs.getString("cliTelefone");
-			String cliSexo = rs.getString("cliSexo");
-			String cliAtivo = rs.getString("cliAtivo");
+			String funcID = rs.getString("funcID");
+			String funcNome = rs.getString("funcNome");
+			String funcUsername = rs.getString("funcUsername");
+			String funcPassword = rs.getString("funcPassword");
+			String funcEmail = rs.getString("funcEmail");
+			String funcStatus = rs.getString("funcStatus");
+			String funcAtivo = rs.getString("funcAtivo");
 			
 			String classeLink = "btn "; 
-			classeLink += cliAtivo.equals("S") ? "btn-success" : "btn-danger";
+			classeLink += funcAtivo.equals("S") ? "btn-success" : "btn-danger";
 			classeLink += " btn-seleciona";
 			
 			out.println("<tr>");
-				out.println("<td><a class='"+ classeLink + "' role='button' rel='" + cliID + "' href='#'>" + cliID + "</a></td>");
-				out.println("<td>" + cliNome + "</td>");
-				out.println("<td>" + cliCPF + "</td>");
-				out.println("<td>" + cliRG + "</td>");
-				out.println("<td>" + cliEmail + "</td>");
-				out.println("<td>" + cliTelefone + "</td>");
-				out.println("<td>" + cliSexo + "</td>");
-				out.println("<td>" + cliAtivo + "</td>");
+				out.println("<td><a class='"+ classeLink + "' role='button' rel='" + funcID + "' href='#'>" + funcID + "</a></td>");
+				out.println("<td>" + funcNome + "</td>");
+				out.println("<td>" + funcUsername + "</td>");
+				out.println("<td>" + funcPassword + "</td>");
+				out.println("<td>" + funcEmail + "</td>");
+				out.println("<td>" + funcStatus + "</td>");
+				out.println("<td>" + funcAtivo + "</td>");
 			out.println("</tr>");
 		}
 	} catch (SQLException e) {
@@ -146,7 +138,7 @@
 	</table>
 	<script>
 	$(document).ready( function () {
-	    $('#tabListaClientes').DataTable({
+	    $('#tabListaFuncionarios').DataTable({
 	    	responsive: true,
 	    	"aoColumnDefs": [
                 { 
@@ -158,7 +150,7 @@
             "bPaginate": true,
             "oLanguage": {
                   "sEmptyTable": "Nenhum registro encontrado",
-                  "sInfo": "Clientes cadastrados no sistema",
+                  "sInfo": "Funcionários cadastrados no sistema",
                   "sInfoEmpty": "Mostrando 0 até de 0 registros",
 				"sInfoFiltered": "(Filtrados de _MAX_ registros)", 
                   "sInfoPostFix": "",
@@ -183,4 +175,4 @@
 		} );
 	</script>
 	<script src="<%=request.getContextPath() %>/assets/jquery/jquery.dataTables.min.js"></script>
-	<script src="<%=request.getContextPath() %>/resources/js/scriptClientesSelecao.js"></script>
+	<script src="<%=request.getContextPath() %>/resources/js/scriptFuncionariosSelecao.js"></script>

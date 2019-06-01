@@ -19,7 +19,6 @@
 	<h1 class="h1"><i class="fas fa-columns"></i> DASHBOARD </h1>
 	<p><strong><%=(String) session.getAttribute("nomeUser")%></strong>, estas são as tarefas que você pode fazer:</p>
 		<hr />
-		<h1 class="h1">TESTE DASHBOARD</h1>
 		<div class="row">
 			<div class="col-sm-4 <%=link %>">
 				<a href="veiculos.jsp"><h2 class="h2"><i class="fas fa-car"></i> VEÍCULOS </h2>

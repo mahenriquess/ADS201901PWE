@@ -21,12 +21,17 @@
 		}
 		
 		if(registros > 0){
+			
+			//if(situacao.equals("S")){
+			
 			logado = true;
 			session.setAttribute("idUser", id);
 			session.setAttribute("statusUser", status);
 			session.setAttribute("nomeUser", nome);
 			session.setAttribute("userUser", username);
 			session.setAttribute("situacaoUser", situacao);
+			
+			//}
 		}
 		
 	} catch (SQLException e) {
