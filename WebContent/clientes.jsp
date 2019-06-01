@@ -67,7 +67,7 @@
 			   			</label>
 			   			<label for="formCadCli-telefone">
 			    			<p>Telefone:
-			    				<input class="form-control" type="text" id="formCadCli-telefone" placeholder=" ex.: (11) 999999-9999" size="15" maxlength="15" required />
+			    				<input class="form-control" type="text" id="formCadCli-telefone" placeholder=" ex.: (11) 99999-9999" size="15" maxlength="15" required />
 			   				</p>
 			   			</label>
 			   		</div>
@@ -89,6 +89,7 @@
 			    					<option value="N">Não</option>
 			    				</select>
 			   				</p>
+			   			</label>
 		   			</div>
 		   		</div>
 		   		<div class="row">
