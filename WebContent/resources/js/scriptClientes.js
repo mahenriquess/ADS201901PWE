@@ -57,7 +57,7 @@ $('#btn-cad-cli').click(function(){
 					$('#loader').html("Cliente cadastrado com sucesso!");
 					$('#formCadCli input').val("");
 					$('#formCadCli textarea').val("");
-					listarVeiculos();
+					listarClientes();
 				} else {
 					$('#loader').removeClass('bg-info text-center text-white');
 					$('#loader').addClass('bg-danger text-center text-white');
