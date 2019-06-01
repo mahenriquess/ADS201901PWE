@@ -11,7 +11,7 @@ public class TesteVeiculo {
 	
 	public static void main(String[] args) {
 
-		Veiculo vei = new Veiculo("20", "DFX5509", "Fiat", "Uno", "Azul", "1", "2001", "60.00", "Gasolina", "Disponivel", "Carro legal");
+		Veiculo vei = new Veiculo("20", "DFX5509", "Fiat", "Uno", "Azul", "1", "2001", "60.00", "Gasolina", "Disponivel", "Carro legal", "157800");
 		VeiculoDAO veiDao = new VeiculoDAO();
 		
 		String id, nome, ativo, categoria, combustivel, categoriaNome = null;

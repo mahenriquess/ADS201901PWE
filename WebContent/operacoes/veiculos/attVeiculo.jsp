@@ -17,10 +17,11 @@
 	String combustivel = request.getParameter("combustivel");
 	String situacao = request.getParameter("situacao");
 	String observacao = request.getParameter("observacao");
+	String km = request.getParameter("km");
 	
 	boolean resultado = false;
 	
-	Veiculo vei = new Veiculo(id, placa, marca, modelo, cor, categoria, ano, valor, combustivel, situacao, observacao);
+	Veiculo vei = new Veiculo(id, placa, marca, modelo, cor, categoria, ano, valor, combustivel, situacao, observacao, km);
 	VeiculoDAO veiDAO = new VeiculoDAO();
 
 	resultado = veiDAO.atualizarVeiculo(vei.toArray());	

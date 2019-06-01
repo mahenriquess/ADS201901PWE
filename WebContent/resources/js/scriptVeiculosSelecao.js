@@ -1,3 +1,4 @@
+$('#modal-km').mask("#######");
 $('#btn-atualiza-veiculo').click(function(){
 	if(validaCamposModal()){
 		$.ajax({
@@ -14,7 +15,8 @@ $('#btn-atualiza-veiculo').click(function(){
 				valor: parseFloat($('#modal-valor').val()),
 				combustivel: $("input[name='modal-combustivel']:checked").val(),
 				situacao: $('#modal-situacao').val(),
-				observacao: $('#modal-observacao').val()
+				observacao: $('#modal-observacao').val(),
+				km: $('#modal-km').val()
 			},
 			
 			url: "operacoes/veiculos/attVeiculo.jsp",
@@ -95,13 +97,15 @@ $(".btn-seleciona").click(function(){
 });
 
 function carregaModal(id){
-	console.log(id);
+	//console.log(id);
+	
 	$.ajax({
 		datatype: "JSON",
 		method: "GET",
 		url: "operacoes/veiculos/getVeiculoID.jsp?id=" + id,
 		
 		success: function(veiculo) {
+			alert(veiculo.veiID);
 			$('#modal-id').val(veiculo.veiID);
 			$('#modal-placa').val(veiculo.veiPlaca);
 			$('#modal-marca').val(veiculo.veiMarca);
@@ -113,6 +117,7 @@ function carregaModal(id){
 			$('input[name="modal-combustivel"]').filter('#' + veiculo.veiCombustivel).attr('checked', true),
 			$('#modal-situacao').val(veiculo.veiSituacao).attr('selected', true);
 			$('#modal-observacao').val(veiculo.veiObservacao);
+			$('#modal-km').val(veiculo.veiKM);
 		},
 		
 		error: function(){

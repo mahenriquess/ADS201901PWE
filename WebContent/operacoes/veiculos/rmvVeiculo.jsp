@@ -10,7 +10,7 @@
 	String situacao = request.getParameter("situacao");
 	boolean resultado = false;
 	
-	Veiculo vei = new Veiculo(id, "", "", "", "", "", "", "", "", situacao, "");
+	Veiculo vei = new Veiculo(id, "", "", "", "", "", "", "", "", situacao, "", "");
 	VeiculoDAO veiDAO = new VeiculoDAO();
 	
 	if(situacao.equals("Disponível")){

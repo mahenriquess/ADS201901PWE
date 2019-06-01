@@ -20,7 +20,7 @@ public class TesteCliente {
 		
 		//teste = cliDao.removerCliente(cli.getCliID());
 		
-		//rs = cliDao.selecionarClientes("");
+		rs = cliDao.selecionarClientes("");
 		
 		try {
 			while(rs.next()) {
