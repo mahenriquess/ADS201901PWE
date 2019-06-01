@@ -89,6 +89,7 @@
 			    					<option value="N">Não</option>
 			    				</select>
 			   				</p>
+			   			</label>
 		   			</div>
 		   		</div>
 		   		<div class="row">
