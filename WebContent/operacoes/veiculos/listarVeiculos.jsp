@@ -60,6 +60,11 @@
 		    				<input class="form-control" type="text" id="modal-modelo" placeholder=" ex.: Corolla" size="25" maxlength="25" required />
 		   				</p>
 		   			</label>
+		   			<label for="modal-km">
+		    			<p>KM rodados:
+		    				<input class="form-control" type="text" id="modal-km" required />
+		   				</p>
+		   			</label>
 	   			</div>
 	   		</div>
 	   		<div class="row">
@@ -172,6 +177,7 @@
 				<th>VALOR (R$)</th>
 				<th>TIPO COMB</th>
 				<th>OBSERVAÇÃO</th>
+				<th>KM RODADOS</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -198,6 +204,7 @@
 			String veiCombustivel = rs.getString("veiCombustivel");
 			String veiSituacao = rs.getString("veiSituacao");
 			String veiObservacao = rs.getString("veiObservacao");
+			String veiKm = rs.getString("veiKM");
 			
 			String classeLink = "btn "; 
 			classeLink += veiSituacao.equals("Disponível") ? "btn-success" : "btn-danger";
@@ -215,6 +222,7 @@
 				out.println("<td>" + veiValorLocacao + "</td>");
 				out.println("<td>" + veiCombustivel + "</td>");
 				out.println("<td>" + veiObservacao + "</td>");
+				out.println("<td>" + veiKm + "</td>");
 			out.println("</tr>");
 		}
 	} catch (SQLException e) {

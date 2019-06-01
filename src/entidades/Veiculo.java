@@ -12,8 +12,9 @@ public class Veiculo {
 	private String veiCombustivel;
 	private String veiSituacao;
 	private String veiObservacao;
+	private String veiKM;
 	
-	public Veiculo(String id, String placa, String marca, String modelo, String cor, String categoria, String ano, String valorlocacao, String combustivel, String situacao, String observacao) {
+	public Veiculo(String id, String placa, String marca, String modelo, String cor, String categoria, String ano, String valorlocacao, String combustivel, String situacao, String observacao, String km) {
 		this.veiID = id;
 		this.veiPlaca = placa;
 		this.veiMarca = marca;
@@ -25,6 +26,7 @@ public class Veiculo {
 		this.veiCombustivel = combustivel;
 		this.veiSituacao = situacao;
 		this.veiObservacao = observacao;
+		this.veiKM = km;
 	
 	}
 	
@@ -88,6 +90,14 @@ public class Veiculo {
 	public void setVeiObservacao(String veiObservacao) {
 		this.veiObservacao = veiObservacao;
 	}
+	public String getVeiKM() {
+		return veiKM;
+	}
+
+	public void setVeiKM(String veiKM) {
+		this.veiKM = veiKM;
+	}
+
 	public String getVeiPlaca() {
 		return veiPlaca;
 	}
@@ -98,7 +108,7 @@ public class Veiculo {
 	
 	
 	public String[] toArray() {
-		String[] dados = {this.getVeiID(), this.getVeiPlaca(),this.getVeiMarca() ,this.getVeiModelo(), this.getVeiCor(), this.getVeiCategoria(), this.getVeiAno(), this.getVeiValorLocacao(), this.getVeiCombustivel(), this.getVeiSituacao(), this.getVeiObservacao()};
+		String[] dados = {this.getVeiID(), this.getVeiPlaca(),this.getVeiMarca() ,this.getVeiModelo(), this.getVeiCor(), this.getVeiCategoria(), this.getVeiAno(), this.getVeiValorLocacao(), this.getVeiCombustivel(), this.getVeiSituacao(), this.getVeiObservacao(), this.getVeiKM()};
 		return dados;
 	}
 

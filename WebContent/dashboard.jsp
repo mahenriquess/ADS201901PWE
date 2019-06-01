@@ -29,7 +29,7 @@
 				<h5 class="h5">Verificar cadastro de clientes no sistema</h5></a>
 			</div>
 			<div class="col <% out.print(link.equals("") ? "" : "-sm-4"); %>">
-				<a href="#"><h2 class="h2"><i class="fas fa-money-check-alt"></i> LOCAÇÃO </h2>
+				<a href="locacoes.jsp"><h2 class="h2"><i class="fas fa-money-check-alt"></i> LOCAÇÃO </h2>
 				<h5 class="h5">Faça a locação de um veículo disponível</h5></a>
 			</div>
 		</div>

@@ -20,7 +20,8 @@
 								  rs.getString("veiValorLocacao"),
 								  rs.getString("veiCombustivel"),
 								  rs.getString("veiSituacao"),
-								  rs.getString("veiObservacao"));
+								  rs.getString("veiObservacao"),
+								  rs.getString("veiKM"));
 		
 		String json = new Gson().toJson(vei);
 		response.setContentType("application/json");

@@ -7,7 +7,7 @@ import entidades.Veiculo;
 public class VeiculoDAO extends DAO {
 
 	public VeiculoDAO() {
-		this.tableFields = new String[]{"veiID", "veiPlaca", "veiMarca", "veiModelo","veiCor","veiCategoria", "veiAno", "veiValorLocacao", "veiCombustivel", "veiSituacao", "veiObservacao"};
+		this.tableFields = new String[]{"veiID", "veiPlaca", "veiMarca", "veiModelo","veiCor","veiCategoria", "veiAno", "veiValorLocacao", "veiCombustivel", "veiSituacao", "veiObservacao", "veiKM"};
 		this.tableName = "tbpwe_veiculos";
 	}
 	

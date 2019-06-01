@@ -39,7 +39,8 @@ $('#btn-cad-vei').click(function(){
 				ano: $('#formCadVei-ano').val(),
 				valor: parseFloat($('#formCadVei-valor').val()),
 				combustivel: $("input[name='combustivel']:checked").val(),
-				observacao :$('#formCadVei-observacao').val()
+				observacao: $('#formCadVei-observacao').val(),
+				km: $('#formCadVei-km').val() 
 			},
 			url: "operacoes/veiculos/cadVeiculo.jsp",
 			
@@ -81,7 +82,8 @@ $('#btn-cad-vei').click(function(){
 	
 });
 
-$('#formCadVei-placa').mask("SSS#AA#");
+$('#formCadVei-placa').mask("SSS#AA#"); //3 letras, 1 número, 2 números ou letras e 1 número
+$('#formCadVei-km').mask("#######");
 $('#formCadVei-placa').keyup(function(){
 	return $(this).val($(this).val().toUpperCase());
 });
@@ -116,6 +118,10 @@ function validaCampos(){
 		qtdErros++;
 	}
 	
+	if(!validaKM($('#formCadVei-km').val())){
+		criaMsgErro("Por favor, digite uma quilometragem válida.");
+	}
+	
 	if(qtdErros > 0) {
 		return false;
 	}
@@ -146,4 +152,8 @@ function validaAno(ano){
 
 function validaTamanhoCampos(campo){
 	return (campo.length > 1);
+}
+
+function validaKM(km){
+	return (km > 0 && km < 1000000);
 }

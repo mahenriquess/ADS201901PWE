@@ -57,10 +57,6 @@
 			    				<input class="form-control" type="text" id="formCadVei-modelo" placeholder=" ex.: Corolla" size="25" maxlength="25" required />
 			   				</p>
 			   			</label>
-		   			</div>
-		   		</div>
-		   		<div class="row">
-		   			<div class="col">
 			   			<label for="formCadVei-ano">
 			    			<p>Ano:
 			    				<%
@@ -69,6 +65,10 @@
 			    				<input class="form-control" type="number" id="formCadVei-ano" placeholder="ex.: 1991" min="1930" max="<%=cal.get(Calendar.YEAR) %>" required />
 			   				</p>
 			   			</label>
+		   			</div>
+		   		</div>
+		   		<div class="row">
+		   			<div class="col">
 			   			<label for="formCadVei-categoria">
 			    			<p>Categoria:
 			    				<select class="form-control" id="formCadVei-categoria">
@@ -114,6 +114,11 @@
 			   			<label for="formCadVei-valor">
 			    			<p>Valor da locação (R$):
 			    				<input class="form-control" type="text" id="formCadVei-valor" size="15" maxlength="14" required />
+			   				</p>
+			   			</label>
+			   			<label for="formCadVei-km">
+			    			<p>KM rodados:
+			    				<input class="form-control" type="text" id="formCadVei-km" required />
 			   				</p>
 			   			</label>
 		   			</div>
