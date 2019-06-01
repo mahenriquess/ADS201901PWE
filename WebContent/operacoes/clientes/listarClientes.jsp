@@ -28,15 +28,15 @@
 		    				<input class="form-control" type="text" id="modal-id" size="4" placeholder="ID" readonly="true" /> 
 		   				</p>
 		   			</label>
+		   			<label for="modal-nome">
+		    			<p>Nome:
+		    				<input class="form-control" type="text" id="modal-nome" placeholder=" ex.: Fulano dos Santos" size="30" maxlength="50"/>
+		   				</p>
+		   			</label>
         		</div>
         	</div>
         	<div class="row">
-		    	<div class="col"> 
-		    		<label for="modal-nome">
-		    			<p>Nome:
-		    				<input class="form-control" type="text" id="modal-nome" placeholder=" ex.: Fulano dos Santos" size="50" maxlength="50"/>
-		   				</p>
-		   			</label>
+		    	<div class="col">
 		   			<label for="modelo-cpf">
 		    			<p>CPF:
 		    				<input class="form-control" type="text" id="modal-cpf" placeholder=" ex.: 123.456.789-01" size="15" maxlength="15" readonly="true" />
@@ -61,6 +61,10 @@
 			    				<input class="form-control" type="text" id="modal-telefone" placeholder="ex.: (11) 99999-9999" required />
 			    			</p>
 			   			</label>
+				</div>
+			</div>   			
+			<div class="row">
+		   			<div class="col">
 			   			<label for="modal-sexo">
 			    			<p>Sexo:
 			    				<select class="form-control" id="modal-sexo" required >

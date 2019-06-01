@@ -20,7 +20,7 @@
 								  rs.getString("cliAtivo")
 								  );
 		
-		String json = new Gson().toJson(vei);
+		String json = new Gson().toJson(cli);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(json);

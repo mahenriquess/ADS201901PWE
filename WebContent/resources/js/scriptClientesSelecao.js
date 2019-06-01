@@ -69,7 +69,7 @@ $('#btn-remove-cliente').click(function(){
 					alert("Cliente removido com sucesso.");
 					$('#form-modal input').val("");
 					$('#form-modal textarea').val("");
-					listarVeiculos();
+					listarClientes();
 				} else {
 					alert("Você não pode remover um veículo que esteja INATIVO.");
 				}
@@ -125,7 +125,7 @@ $('#modal-rg').mask('00.000.000-0', {reverse: false});
 $('#modal-telefone').mask('(00)00000-0000', {reverse: false});
 
 
-function validaCampos(){
+function validaCamposModal(){
 
 	var qtdErros= 0;
 	
