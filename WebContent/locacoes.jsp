@@ -12,7 +12,7 @@
 <head>
 <%@include file="config/includes.html"%>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/cssVeiculos.css" />
+<link rel="stylesheet" href="resources/css/cssLocacoes.css" />
 <title>Locações | MarThiRent</title>
 </head>
 <body>
@@ -116,20 +116,70 @@
 			<i class="fas fa-money-check-alt"></i> LOCAÇÕES
 		</h1>
 		<br />
-		<p>Escolha abaixo o que deseja fazer:</p>
+		<p>Você também pode fazer isso aqui:</p>
 		<p>
 			<button class="btn btn-primary btn-collapse" type="button"
 				id="btn-realizar-devolucao">Realizar Devolução</button>
 		</p>
 		<hr />
+		<h4>Você pode refinar sua busca através destes filtros: </h4>
+		<br />
+		<form action="" method="post" class="form-group">
+			<div class="row">
+				<div class="col">
+					<label>
+						<h5 class="h5">de R$:</h5><input class="form-control" type="number" id="valMin" name="valMin" min="0" placeholder="R$ 0,00"/>
+					</label>
+					<label>  
+						<h5 class="h5">até R$:</h5><input class="form-control" type="number" id="valMax" name="valMax" min="0" placeholder="R$ 0,00"/>
+					</label>
+					<label>
+						<h5 class="h5">Marca</h5><input type="text" class="form-control" name="marcaBusca" size="20" placeholder="Ex.: Chevrolet"/>
+					</label>
+					<label>
+						<input type="submit" class="btn btn-success" value="Buscar" />
+					</label>					
+				</div>
+			</div>
+		</form>
+
+		<%
+			String min = null, max = null, marcaBusca = null;
+		
+			if(request.getParameter("valMin") != null){
+				min = request.getParameter("valMin");		
+			}
+			if(request.getParameter("valMax") != null){
+				max = request.getParameter("valMax");		
+			}
+			if(request.getParameter("marcaBusca") != null){
+				marcaBusca = request.getParameter("marcaBusca");
+			}
+		
+			String restricoes = "";
+			
+			if((min != null || max != null) && (!min.equals("") || !max.equals(""))){
+				if(!min.equals("") && max.equals("")){
+					restricoes += " AND veiValorLocacao > '" + min + "'";
+				} else if(min.equals("") && !max.equals("")){
+					restricoes += " AND veiValorLocacao < '" + max + "'";
+				} else {
+					restricoes += " AND veiValorLocacao BETWEEN '" + min + "' AND '" + max + "'";
+				}
+			}
+			
+			if(marcaBusca != null && !marcaBusca.equals("")){
+				restricoes += " AND veiMarca LIKE '%" + marcaBusca + "%'";
+			}
+		%>
 		<div class="container">
 			<p>Abaixo, os carros disponíveis para locação: </p>
 			<%
 				VeiculoDAO veiDAOlocacao = new VeiculoDAO();
-				ResultSet rsVeiculos = veiDAOlocacao.selecionarVeiculo("veiSituacao <> 'Indisponível'");
+				ResultSet rsVeiculos = veiDAOlocacao.selecionarVeiculo("veiSituacao <> 'Indisponível'" + restricoes);
 				
 				out.println("<div class='row'>");
-				int linhas = 0, colunas = 0;
+				int colunas = 0;
 				
 				while(rsVeiculos.next()) {
 					if(colunas == 3){
@@ -138,10 +188,12 @@
 						out.println("<div class='row'>");
 					}
 					
-					out.println("<div class='col-sm-4'>");
-						out.println("<h3 class='h3'>" + rsVeiculos.getString("veiModelo") + "</h3>");
-						out.println("<h5 class='h5'>" + rsVeiculos.getString("veiAno") + " | " + rsVeiculos.getString("veiCombustivel") + "</h5>");
-						out.println("<button class='btn btn-success btn-grid-veiculo' type='button' rel='" +rsVeiculos.getString("veiID") + "'>Alugar</button>");					
+					out.println("<div class='col-sm-4 bg-light border grid-veiculo'>");
+						out.println("<br /><img class='img-responsive' width='128px' src='resources/img/car-photo.png'>");
+						out.println("<h3 class='h3'><strong>" + rsVeiculos.getString("veiModelo") + "</strong></h3>");
+						out.println("<h5 class='h5'>" + rsVeiculos.getString("veiAno") + " | " + rsVeiculos.getString("veiCombustivel") + " | " + rsVeiculos.getString("veiMarca") + "</h5>");
+						out.println("<h2 class='h2'>R$ " + rsVeiculos.getString("veiValorLocacao") + "</h2>");
+						out.println("<button class='btn btn-success btn-grid-veiculo' type='button' rel='" +rsVeiculos.getString("veiID") + "'>Alugar</button><br /><br />");					
 					out.println("</div>");
 					
 					colunas++;
