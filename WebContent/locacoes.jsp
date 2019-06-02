@@ -77,7 +77,6 @@
 							</p>
 							<p id="loader-total"></p>
 					</form>
-					<p class="loaderlocacao"></p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -88,30 +87,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="modal" id="modal-reg-devolucao" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">DEVOLVER VEÍCULO</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Fechar">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Formulário de registro de devoluções</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-success">Devolver
-						Veículo</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="container pagina text-center">
 		<h1 class="h1">
 			<i class="fas fa-money-check-alt"></i> LOCAÇÕES
@@ -125,7 +100,7 @@
 				Gerenciar Locações</button>
 		</p>
 		<div class="collapse" id="collapseLocacoes">
-			<div class="card card-body text-center">
+			<div class="card card-body pagina">
 				<h3>
 					<strong>Veículos Disponíveis para Locação</strong>
 				</h3>
@@ -192,32 +167,21 @@
 						VeiculoDAO veiDAOlocacao = new VeiculoDAO();
 						ResultSet rsVeiculos = veiDAOlocacao.selecionarVeiculo("veiSituacao <> 'Indisponível'" + restricoes);
 
-						out.println("<div class='row'>");
 						int colunas = 0;
-
+						
+						out.println("<div class='row'>");
 						while (rsVeiculos.next()) {
-							if (colunas == 3) {
-								out.println("</div>");
-								out.println("<div class='row'>");
-							}
-
 							out.println("<div class='col-sm-4 bg-light border grid-veiculo'>");
-							out.println("<br /><img class='img-responsive' width='128px' src='resources/img/car-photo.png'>");
-							out.println("<h3 class='h3'><strong>" + rsVeiculos.getString("veiModelo") + "</strong></h3>");
-							out.println("<h5 class='h5'>" + rsVeiculos.getString("veiAno") + " | "
-									+ rsVeiculos.getString("veiCombustivel") + " | " + rsVeiculos.getString("veiMarca") + "</h5>");
-							out.println("<h2 class='h2'>R$ " + rsVeiculos.getString("veiValorLocacao") + "</h2>");
-							out.println("<button class='btn btn-success btn-grid-veiculo' type='button' rel='"
-									+ rsVeiculos.getString("veiID") + "'>Alugar</button><br /><br />");
+								out.println("<br /><img class='img-responsive' width='128px' src='resources/img/car-photo.png'>");
+								out.println("<h3 class='h3'><strong>" + rsVeiculos.getString("veiModelo") + "</strong></h3>");
+								out.println("<h5 class='h5'>" + rsVeiculos.getString("veiAno") + " | "
+										+ rsVeiculos.getString("veiCombustivel") + " | " + rsVeiculos.getString("veiMarca") + "</h5>");
+								out.println("<h2 class='h2'>R$ " + rsVeiculos.getString("veiValorLocacao") + "</h2>");
+								out.println("<button class='btn btn-success btn-grid-veiculo' type='button' rel='"
+										+ rsVeiculos.getString("veiID") + "'>Alugar</button><br /><br />");
 							out.println("</div>");
-
-							colunas++;
-
-							if (colunas == 3) {
-								out.println("</div>");
-								colunas = 0;
-							}
 						}
+						out.println("</div>");
 					%>
 				</div>
 				
@@ -235,11 +199,12 @@
 					<strong>Veículos pendentes para Devolução</strong>
 				</h3>
 				<h4>Você pode refinar sua busca através destes filtros:</h4>
+				<p id="loader-locacao"></p>
 				<div id="listaLocacoes"></div>
 			</div>
 		</div>
 	</div>
-	
+	<script src="resources/js/scriptVeiculos.js"></script>
 	<script src="resources/js/scriptLocacoes.js"></script>
 </body>
 </html>

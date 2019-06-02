@@ -6,27 +6,43 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/jquery/jquery.dataTables.min.css" />
 
-<div class="modal" tabindex="-1" role="dialog" id="modalSelecionaLocacao">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">DADOS DA LOCAÇÃO SELECIONADA</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="modal-form">
-        	<p>DADOS DA LOCAÇÃO</p>
-        </form>
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btn-atualiza-locacao">Salvar Alterações</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal" id="modal-reg-devolucao" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">DEVOLVER VEÍCULO</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<!--  
+				
+					$('#modal-locacao-id').val(locacao.locacaoID);
+					$('#modal-locacao-cliente').val(locacao.locacaoCli);
+					$('#modal-locacao-veiculo').val(locacao.locacaoVeiculo);
+					$('#modal-locacao-datahora').val(locacao.locacaoDataHora);
+					$('#modal-locacao-dias').val(locacao.locacaoDias);
+					$('#modal-locacao-valor').val(locacao.locacaoValor);
+					$('#modal-locacao-devolucao').val(locacao.locacaoDevolucao);
+					$('#modal-locacao-status').val(locacao.locacaoStatus);
+					$('#modal-reg-locacao').modal('show');
+				 -->
+				<div class="modal-body">
+					<form class="form-group" id="form-reg-devolucao">
+					
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-success">Devolver
+						Veículo</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<p id="modal-loader"></p>
 
 	<table class="table table-responsive border" id="tabListaLocacoes">

@@ -1,3 +1,4 @@
+<%@page import="dao.VeiculoDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Date"%>
@@ -31,6 +32,9 @@
 	LocacaoDAO locDAO = new LocacaoDAO();
 	
 	boolean resultado = locDAO.inserirLocacao(locacao.toArray());
+	
+	VeiculoDAO veiDao = new VeiculoDAO();
+	boolean atualizaVeiculoStatus = veiDao.atualizarVeiculoStatus("Indisponível", "veiSituacao", veiID);
 	
 	String json = new Gson().toJson(resultado);
 	response.setContentType("application/json");

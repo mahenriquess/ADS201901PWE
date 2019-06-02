@@ -21,6 +21,11 @@ public class VeiculoDAO extends DAO {
 		return resultado;
 	}
 	
+	public boolean atualizarVeiculoStatus(String valor, String campo, String id) {
+		boolean resultado = super.updateField(valor, campo, id);
+		return resultado;
+	}
+	
 	public boolean removerVeiculo(String id) {
 		boolean resultado = super.delete(id);
 		return resultado;

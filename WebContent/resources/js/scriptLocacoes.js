@@ -2,14 +2,40 @@ $(document).ready(function(){
 	listarLocacoes();
 });
 
-$('#btn-realizar-devolucao').click(function(){
-	$('#modal-reg-devolucao').modal('show');
+$('.btn-grid-veiculo').click(function(){
+	carregaDadosModal($(this).attr('rel'));
 });
 
-$('.btn-grid-veiculo').click(function(){
+$('.btn-seleciona').click(function(){
 	carregaDadosModalLocacao($(this).attr('rel'));
 });
 
+//BUSCA REGISTROS DE LOCAÇÃO SELECIONADA
+function carregaDadosModal(id){
+	$.ajax({
+		datatype: "JSON",
+		method: "GET",
+		url: "operacoes/veiculos/getVeiculoID.jsp?id=" + id,
+		
+		success: function(veiculo){
+			$('#form-reg-locacao-id').val(veiculo.veiID);
+			$('#form-reg-locacao-marca').val(veiculo.veiMarca);
+			$('#form-reg-locacao-modelo').val(veiculo.veiModelo);
+			$('#form-reg-locacao-ano').val(veiculo.veiAno);
+			$('#form-reg-locacao-combustivel').val(veiculo.veiCombustivel);
+			$('#form-reg-locacao-valor').val(veiculo.veiValorLocacao);
+			$('#modal-reg-locacao').modal('show');
+		},
+		
+		error: function() {
+			$('#loader-locacao').empty();
+			$('#loader-locacao').addClass('bg-info text-center text-white');
+			$('#loader-locacao').html("Temporariamente indisponível. Tente novamente mais tarde.");
+		}
+	});
+}
+
+//REGISTRO DE LOCAÇÃO
 $('#btn-reg-locacao').click(function(){
 	if(validaFormLocacao()){
 		var confirmar = confirm("Você está alugando " + $('#form-reg-locacao-modelo').val() + " por " + $('#form-reg-locacao-total').val() + ". Para prosseguir, confirme a operação.");
@@ -41,15 +67,14 @@ $('#btn-reg-locacao').click(function(){
 						$('#loader-locacao').removeClass('bg-danger text-center text-white');
 						$('#loader-locacao').addClass('bg-success text-center text-white');
 						$('#loader-locacao').html("Locação realizada com sucesso!");
-						$('#formCadVei input').val("");
-						$('#formCadVei textarea').val("");
-						listarLocacoes();
+						$('#form-reg-locacao input').val("");
 					} else {
 						$('#loader-locacao').removeClass('bg-info text-center text-white');
 						$('#loader-locacao').addClass('bg-danger text-center text-white');
 						$('#loader-locacao').html("Ocorreu um erro ao realizar a locação.");
 					}
 					
+					document.location.reload();
 					$('#modal-reg-locacao').modal('hide');
 				},
 				
@@ -62,6 +87,33 @@ $('#btn-reg-locacao').click(function(){
 		}
 	}
 });
+
+//SELECIONA TODAS AS LOCAÇÕES
+function listarLocacoes(){
+	$.ajax({
+		datatype: "HTML",
+		method: "GET",
+		url: "operacoes/locacoes/listarLocacoes.jsp",
+		
+		beforeSend: function(){
+			$('#loader-locacao').empty();
+			$('#loader-locacao').removeClass('bg-info text-center text-white');
+			$('#loader-locacao').html("<img src='resources/img/loading.gif' width='20%'/>");
+		},
+		
+		timeout: 10000,
+		
+		success: function(lista){
+			$('#loader-locacao').empty();
+			$('#listaLocacoes').html(lista);
+			
+		},
+		
+		error: function(){
+			console.log("Ocorreu um erro ao processar sua solicitação de busca.");
+		}
+	});
+}
 
 $('#btn-cancela-locacao').click(function(){
 	$('#form-reg-locacao-cli').val("").attr('selected', true);
@@ -79,47 +131,6 @@ function calculaLocacao(dias){
 	
 	var total = parseFloat($('#form-reg-locacao-valor').val()) * $('#form-reg-locacao-dias').val();
 	$('#form-reg-locacao-total').val(total.toFixed(2));
-}
-
-function listarLocacoes(){
-	$.ajax({
-		datatype: "HTML",
-		method: "GET",
-		url: "operacoes/locacoes/listarLocacoes.jsp",
-		
-		beforeSend: function(){
-			$('#listaLocacoes').html("<img src='resources/img/loading.gif' width='20%'/>");
-		},
-		
-		timeout: 10000,
-		
-		success: function(lista){		
-			$('#listaLocacoes').html(lista);
-		},
-		
-		error: function(){
-			console.log("Ocorreu um erro ao processar sua solicitação de busca.");
-		}
-	});
-}
-
-function carregaDadosModalLocacao(id){
-	$.ajax({
-		datatype: "JSON",
-		method: "GET",
-		url: "operacoes/veiculos/getVeiculoID.jsp?id=" + id,
-		
-		success: function(veiculo){
-			$('#form-reg-locacao-id').val(veiculo.veiID);
-			$('#form-reg-locacao-marca').val(veiculo.veiMarca);
-			$('#form-reg-locacao-modelo').val(veiculo.veiModelo);
-			$('#form-reg-locacao-ano').val(veiculo.veiAno);
-			$('#form-reg-locacao-combustivel').val(veiculo.veiCombustivel);
-			$('#form-reg-locacao-valor').val(veiculo.veiValorLocacao);
-		}
-	});
-	
-	$('#modal-reg-locacao').modal('show');
 }
 
 function validaFormLocacao(){

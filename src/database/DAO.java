@@ -84,6 +84,18 @@ public class DAO extends ConexaoDB {
 
 		return retorno;
 	}
+	
+	public boolean updateField(String value, String field, String id) {
+
+		String cmdSql = " UPDATE " + this.tableName + " SET ";
+
+		cmdSql += field + " = '" + value + "'";
+		cmdSql += " WHERE " + this.tableFields[0] + " = '" + id + "'";
+
+		boolean retorno = this.executeSql(cmdSql);
+
+		return retorno;
+	}
 
 	public boolean delete(String value) {
 		
