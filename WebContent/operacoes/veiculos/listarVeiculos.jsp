@@ -156,7 +156,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" id="btn-remove-veiculo">Excluir Veículo</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary" id="btn-atualiza-veiculo">Salvar Alterações</button>
       </div>
     </div>
