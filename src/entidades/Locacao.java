@@ -7,15 +7,19 @@ public class Locacao {
 	private String locacaoDataHora;
 	private String locacaoDias;
 	private String locacaoValor;
+	private String locacaoDevolucao;
+	private String locacaoStatus;	
 	
-	public Locacao(String id, String cliente, String veiculo, String data, String dias, String valor) {
+	public Locacao(String id, String cliente, String veiculo, String data, String dias, String valor, String devolucao, String status) {
 		this.locacaoID = id;
 		this.locacaoCli = cliente;
 		this.locacaoVeiculo = veiculo;
 		this.locacaoDataHora = data;
 		this.locacaoDias = dias;
 		this.locacaoValor = valor;
-	}	
+		this.locacaoDevolucao = devolucao;
+		this.locacaoStatus = status;
+	}
 
 	public String getLocacaoID() {
 		return locacaoID;
@@ -54,9 +58,27 @@ public class Locacao {
 		this.locacaoValor = locacaoValor;
 	}
 
+
+	public String getLocacaoDevolucao() {
+		return locacaoDevolucao;
+	}
+
+	public void setLocacaoDevolucao(String locacaoDevolucao) {
+		this.locacaoDevolucao = locacaoDevolucao;
+	}
+
+	public String getLocacaoStatus() {
+		return locacaoStatus;
+	}
+
+	public void setLocacaoStatus(String locacaoStatus) {
+		this.locacaoStatus = locacaoStatus;
+	}
+	
 	public String[] toArray() {
-		String[] dados = {this.getLocacaoID(), this.getLocacaoCli(), this.getLocacaoVeiculo(), this.getLocacaoDataHora(), this.getLocacaoDias(), this.getLocacaoValor()};
+		String[] dados = {this.getLocacaoID(), this.getLocacaoCli(), this.getLocacaoVeiculo(), this.getLocacaoDataHora(), this.getLocacaoDias(), this.getLocacaoValor(), getLocacaoDevolucao(), getLocacaoStatus()};
 		return dados;
 	}
+
 	
 }
