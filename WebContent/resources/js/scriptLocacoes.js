@@ -14,7 +14,45 @@ $('#btn-reg-locacao').click(function(){
 			$.ajax({
 				datatype: "JSON",
 				method: "POST",
-				url: "operacoes"
+				data: {
+					cliID: $('#form-reg-locacao-cli').val(),
+					veiID: $('#form-reg-locacao-id').val(),
+					qtdDias: $('#form-reg-locacao-dias').val(),
+					total: $('#form-reg-locacao-total').val(),
+				},
+				
+				url: "operacoes/locacoes/cadLocacao.jsp",
+					
+				beforeSend: function(){
+					$('#loader-locacao').empty();
+					$('#loader-locacao').removeClass('bg-info text-center text-white');
+					$('#loader-locacao').html("<img src='resources/img/loading.gif' width='20%'/>");
+				},
+				
+				timeout: 10000,
+				
+				success: function(resultado){
+					if(resultado == true){
+						$('#loader-locacao').removeClass('bg-info text-center text-white');
+						$('#loader-locacao').removeClass('bg-danger text-center text-white');
+						$('#loader-locacao').addClass('bg-success text-center text-white');
+						$('#loader-locacao').html("Locação realizada com sucesso!");
+						$('#formCadVei input').val("");
+						$('#formCadVei textarea').val("");
+						listarVeiculos();
+					} else {
+						$('#loader-locacao').removeClass('bg-info text-center text-white');
+						$('#loader-locacao').addClass('bg-danger text-center text-white');
+						$('#loader-locacao').html("Ocorreu um erro ao realizar a locação.");
+					}
+					$('#modal-reg-locacao').modal('hide');
+				},
+				
+				error: function(){
+					$('#loader-locacao').empty();
+					$('#loader-locacao').addClass('bg-info text-center text-white');
+					$('#loader-locacao').html("Temporariamente indisponível. Tente novamente mais tarde.");
+				}
 			});
 		}
 	}

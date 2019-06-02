@@ -77,6 +77,7 @@
 							</p>
 							<p id="loader-total"></p>
 					</form>
+					<p class="loaderlocacao"></p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -222,20 +223,20 @@
 				
 			</div>
 		</div>
-	</div>
-	<p>
-		<button class="btn btn-primary btn-collapse" type="button"
-			data-toggle="collapse" data-target="#collapseDevolucoes"
-			aria-expanded="false" aria-controls="collapseDevolucoes">
-			Gerenciar Devoluções</button>
-	</p>
-	<div class="collapse" id="collapseDevolucoes">
-		<div class="card card-body text-center">
-			<h3>
-				<strong>Veículos pendentes para Devolução</strong>
-			</h3>
-			<h4>Você pode refinar sua busca através destes filtros:</h4>
-		
+		<p>
+			<button class="btn btn-primary btn-collapse" type="button"
+				data-toggle="collapse" data-target="#collapseDevolucoes"
+				aria-expanded="false" aria-controls="collapseDevolucoes">
+				Gerenciar Devoluções</button>
+		</p>
+		<div class="collapse" id="collapseDevolucoes">
+			<div class="card card-body text-center">
+				<h3>
+					<strong>Veículos pendentes para Devolução</strong>
+				</h3>
+				<h4>Você pode refinar sua busca através destes filtros:</h4>
+			
+			</div>
 		</div>
 	</div>
 	

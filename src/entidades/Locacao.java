@@ -16,7 +16,7 @@ public class Locacao {
 		this.locacaoDias = dias;
 		this.locacaoValor = valor;
 	}	
-	
+
 	public String getLocacaoID() {
 		return locacaoID;
 	}
