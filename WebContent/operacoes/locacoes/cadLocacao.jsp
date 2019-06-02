@@ -1,4 +1,6 @@
-<%@page import="java.sql.Date"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entidades.Locacao"%>
@@ -16,11 +18,16 @@
 	String total = request.getParameter("total");
 	
 	Date date = new Date();
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
+    Calendar cal = Calendar.getInstance(); 
+    cal.setTime(date); 
+    cal.add(Calendar.DATE, Integer.parseInt(qtdDias));
+  
     String dataLocacao = dateFormat.format(date);
-	
-	Locacao locacao = new Locacao("", cliID, veiID, dataLocacao, qtdDias, total, "", "Pendente");
+    String dataDevolucao = dateFormat.format(cal.getTime());
+    
+	Locacao locacao = new Locacao("", cliID, veiID, dataLocacao, qtdDias, total, dataDevolucao, "Pendente");
 	LocacaoDAO locDAO = new LocacaoDAO();
 	
 	boolean resultado = locDAO.inserirLocacao(locacao.toArray());

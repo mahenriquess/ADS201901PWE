@@ -235,7 +235,7 @@
 					<strong>Veículos pendentes para Devolução</strong>
 				</h3>
 				<h4>Você pode refinar sua busca através destes filtros:</h4>
-			
+				<div id="listaLocacoes"></div>
 			</div>
 		</div>
 	</div>
