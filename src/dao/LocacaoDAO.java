@@ -7,7 +7,7 @@ import entidades.Locacao;
 public class LocacaoDAO extends DAO {
 
 	public LocacaoDAO() {
-		this.tableFields = new String[]{"locacaoID","locacaoCli", "locacaoVeiculo","locacaoDataHora","locacaoDias", "locacaoValor"};
+		this.tableFields = new String[]{"locacaoID","locacaoCli", "locacaoVeiculo","locacaoDataHora","locacaoDias", "locacaoValor", "locacaoDevolucao", "locacaoStatus"};
 		this.tableName = "tbpwe_locacoes";
 	}
 	
