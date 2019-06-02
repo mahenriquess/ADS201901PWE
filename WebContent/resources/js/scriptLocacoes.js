@@ -11,9 +11,17 @@ $('#btn-reg-locacao').click(function(){
 		var confirmar = confirm("Você está alugando " + $('#form-reg-locacao-modelo').val() + " por " + $('#form-reg-locacao-total').val() + ". Para prosseguir, confirme a operação.");
 		
 		if(confirmar){
-			alert("Veículo alugado (fake)");
+			$.ajax({
+				datatype: "JSON",
+				method: "POST",
+				url: "operacoes"
+			});
 		}
 	}
+});
+
+$('#btn-cancela-locacao').click(function(){
+	$('#form-reg-locacao-cli').val("").attr('selected', true);
 });
 
 $('#form-reg-locacao-dias').keyup(function(){

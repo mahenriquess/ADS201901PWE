@@ -105,7 +105,6 @@ function carregaModal(id){
 		url: "operacoes/veiculos/getVeiculoID.jsp?id=" + id,
 		
 		success: function(veiculo) {
-			alert(veiculo.veiID);
 			$('#modal-id').val(veiculo.veiID);
 			$('#modal-placa').val(veiculo.veiPlaca);
 			$('#modal-marca').val(veiculo.veiMarca);
