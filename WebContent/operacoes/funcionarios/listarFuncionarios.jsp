@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/jquery/jquery.dataTables.min.css" />
 <%
 	FuncionarioDAO funcDAO = new FuncionarioDAO();
-	ResultSet rs = funcDAO.selecionarFuncionarios("");
+	ResultSet rs = funcDAO.selecionarFuncionarios("funcID <> '" + session.getAttribute("idUser") + "'");
 %>
 
 <div class="modal" tabindex="-1" role="dialog" id="modalSelecionaFuncionario">
@@ -44,7 +44,7 @@
 		   			</label>
 		   			<label for="modal-password">
 		    			<p>Senha:
-		    				<input class="form-control" type="text" id="modal-password" placeholder="-----------" size="15" maxlength="15" required />
+		    				<input class="form-control" type="password" id="modal-password" placeholder="- - - - - " size="15" maxlength="15" required />
 		   				</p>
 		   			</label>
 	   			</div>
