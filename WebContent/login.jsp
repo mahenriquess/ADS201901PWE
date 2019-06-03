@@ -12,8 +12,12 @@
 <body>
 	<%
 		String sessao = (String)session.getAttribute("idUser");
-		if(sessao != null){
-			response.sendRedirect("dashboard.jsp");
+		try {
+			if(sessao != null){
+				response.sendRedirect("dashboard.jsp");
+			}
+		} catch(NullPointerException e) {
+			response.sendRedirect("login.jsp");
 		}
 
 	%>

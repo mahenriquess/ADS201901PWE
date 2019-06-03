@@ -16,28 +16,46 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				
-				<!--  
-				
-					$('#modal-locacao-id').val(locacao.locacaoID);
-					$('#modal-locacao-cliente').val(locacao.locacaoCli);
-					$('#modal-locacao-veiculo').val(locacao.locacaoVeiculo);
-					$('#modal-locacao-datahora').val(locacao.locacaoDataHora);
-					$('#modal-locacao-dias').val(locacao.locacaoDias);
-					$('#modal-locacao-valor').val(locacao.locacaoValor);
-					$('#modal-locacao-devolucao').val(locacao.locacaoDevolucao);
-					$('#modal-locacao-status').val(locacao.locacaoStatus);
-					$('#modal-reg-locacao').modal('show');
-				 -->
 				<div class="modal-body">
 					<form class="form-group" id="form-reg-devolucao">
-					
+						<input type="hidden" id="modal-locacao-datahora" />
+						<input type="hidden" id="modal-locacao-veiculo" />
+						<input type="hidden" id="modal-locacao-dias" />
+						<input type="hidden" id="modal-locacao-cliente" />
+						<div class="row">
+							<div class="col">
+								<label>
+									<p>ID: </p><input type="text" class="form-control" id="modal-locacao-id" size="5" readonly="true" />
+								</label>
+							</div>
+							<div class="col">
+								<label>
+									<p>Valor (R$): </p><input type="text" class="form-control" id="modal-locacao-valor" readonly="true" />
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<label>
+									<p>Status: </p>
+									<select class="form-control" id="modal-locacao-status">
+										<option value="Pendente">Pendente</option>
+										<option value="Finalizada">Finalizada</option>
+									</select>
+								</label>
+							</div>
+							<div class="col">
+								<label>
+									<p>Data de Devolução: </p><input type="date" class="form-control" id="modal-locacao-devolucao"/>
+								</label>
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-success">Devolver
+						data-dismiss="modal">Voltar</button>
+					<button type="button" class="btn btn-success" id="btn-devolve-veiculo">Devolver
 						Veículo</button>
 				</div>
 			</div>
@@ -49,13 +67,13 @@
 		<thead>
 			<tr>
 				<th>ID</th>
+				<th>STATUS</th>
 				<th>CÓD. CLIENTE</th>
 				<th>CÓD. VEÍCULO</th>
 				<th>DATA LOCAÇÃO</th>
+				<th>DATA DEVOLUÇÃO</th>
 				<th>DIAS ALUGADOS</th>
 				<th>VALOR TOTAL (R$)</th>
-				<th>DATA DEVOLUÇÃO</th>
-				<th>STATUS</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -81,13 +99,13 @@
 			
 			out.println("<tr>");
 				out.println("<td><a class='"+ classeLink + "' role='button' rel='" + locacaoID + "' href='#'>" + locacaoID + "</a></td>");
+				out.println("<td>" + locacaoStatus + "</td>");
 				out.println("<td>" + locacaoCli + "</td>");
 				out.println("<td>" + locacaoVeiculo + "</td>");
 				out.println("<td>" + locacaoDataHora + "</td>");
+				out.println("<td>" + locacaoDevolucao + "</td>");
 				out.println("<td>" + locacaoDias + "</td>");
 				out.println("<td>" + locacaoValor + "</td>");
-				out.println("<td>" + locacaoDevolucao + "</td>");
-				out.println("<td>" + locacaoStatus + "</td>");
 			out.println("</tr>");
 		}
 	} catch (SQLException e) {

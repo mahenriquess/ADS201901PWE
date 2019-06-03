@@ -14,11 +14,15 @@
 	<%@include file="config/menu.jsp" %>
 	
 	<%
-		if(!status.equals("A")){
-			response.sendRedirect("dashboard.jsp");
-		}
-		
-		if(sessao == null){
+		try {
+			if(!status.equals("A")){
+				response.sendRedirect("dashboard.jsp");
+			}
+			
+			if(sessao == null){
+				response.sendRedirect("login.jsp");
+			}
+		} catch(NullPointerException e) {
 			response.sendRedirect("login.jsp");
 		}
 	%>

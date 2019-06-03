@@ -19,7 +19,11 @@
 	<%@include file="config/menu.jsp"%>
 
 	<%
-		if(sessao == null){
+		try {
+			if(sessao == null){
+				response.sendRedirect("login.jsp");
+			}
+		} catch(NullPointerException e) {
 			response.sendRedirect("login.jsp");
 		}
 	%>
