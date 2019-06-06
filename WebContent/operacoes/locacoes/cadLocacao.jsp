@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="dao.ClienteDAO"%>
 <%@page import="dao.VeiculoDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -18,6 +20,8 @@
 	String qtdDias = request.getParameter("qtdDias");
 	String total = request.getParameter("total");
 	
+	boolean resultado = false;
+	
 	Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -28,13 +32,18 @@
     String dataLocacao = dateFormat.format(date);
     String dataDevolucao = dateFormat.format(cal.getTime());
     
-	Locacao locacao = new Locacao("", cliID, veiID, dataLocacao, qtdDias, total, dataDevolucao, "Pendente");
-	LocacaoDAO locDAO = new LocacaoDAO();
-	
-	boolean resultado = locDAO.inserirLocacao(locacao.toArray());
-	
-	VeiculoDAO veiDao = new VeiculoDAO();
-	boolean atualizaVeiculoStatus = veiDao.atualizarVeiculoStatus("Indisponível", "veiSituacao", veiID);
+    
+    ClienteDAO cliDAO = new ClienteDAO();
+    ResultSet rsCli = cliDAO.selecionarClientes("cliID = '" + cliID + "' AND cliAtivo = 'S'");
+    
+    if(rsCli.next()){
+    	Locacao locacao = new Locacao("", cliID, veiID, dataLocacao, qtdDias, total, dataDevolucao, "Pendente");
+    	LocacaoDAO locDAO = new LocacaoDAO();
+    	resultado = locDAO.inserirLocacao(locacao.toArray());
+   
+   		VeiculoDAO veiDao = new VeiculoDAO();
+       	boolean atualizaVeiculoStatus = veiDao.atualizarVeiculoStatus("Indisponível", "veiSituacao", veiID);
+    }
 	
 	String json = new Gson().toJson(resultado);
 	response.setContentType("application/json");

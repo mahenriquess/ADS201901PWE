@@ -45,7 +45,7 @@
 								<option value="">Selecione um cliente...</option>
 							<%
 								ClienteDAO cliDAOselect = new ClienteDAO();
-								ResultSet rsClientes = cliDAOselect.selecionarClientes("");
+								ResultSet rsClientes = cliDAOselect.selecionarClientes("cliAtivo = 'S'");
 								
 								while(rsClientes.next()){
 									out.println("<option value='" +rsClientes.getString("cliID") + "'>" + rsClientes.getString("cliNome") + " - " + rsClientes.getString("cliCPF") + "</option>");	

@@ -50,7 +50,7 @@
 			   			</label>
 			   			<label for="formCadFunc-username">
 			    			<p>Nome de Usuário:
-			    				<input class="form-control" type="text" id="formCadFunc-username" placeholder=" ex.: 123.456.789-01" size="15" maxlength="15" required />
+			    				<input class="form-control" type="text" id="formCadFunc-username" placeholder="fulanosilva07" size="15" maxlength="15" required />
 			   				</p>
 			   			</label>
 			   			<label for="formCadFunc-password">

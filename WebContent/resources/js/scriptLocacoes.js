@@ -38,7 +38,7 @@ function carregaDadosModal(id){
 //REGISTRO DE LOCAÇÃO
 $('#btn-reg-locacao').click(function(){
 	if(validaFormLocacao()){
-		var confirmar = confirm("Você está alugando " + $('#form-reg-locacao-modelo').val() + " por " + $('#form-reg-locacao-total').val() + ". Para prosseguir, confirme a operação.");
+		var confirmar = confirm("Você está alugando " + $('#form-reg-locacao-modelo').val() + " no valor de R$ " + $('#form-reg-locacao-total').val() + " por " + $('#form-reg-locacao-dias').val() + " dias . Para prosseguir, confirme a operação.");
 		
 		if(confirmar){
 			$.ajax({
@@ -73,9 +73,8 @@ $('#btn-reg-locacao').click(function(){
 						$('#loader-locacao').addClass('bg-danger text-center text-white');
 						$('#loader-locacao').html("Ocorreu um erro ao realizar a locação.");
 					}
-					
-					document.location.reload();
 					$('#modal-reg-locacao').modal('hide');
+					document.location.reload();
 				},
 				
 				error: function(){
