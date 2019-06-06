@@ -37,8 +37,14 @@ function carregaDadosModalLocacao(id){
 }
 
 $('#btn-devolve-veiculo').click(function(){
+	var msg = "";
+	
+	if($('#modal-locacao-status').val() == "Finalizada"){
+		msg = "Ao finalizar esta locação, o veículo será devolvido. ";
+	}
+	
 	if(validaAtualizacao())
-		if(confirm("Você deseja atualizar esta locação?"))
+		if(confirm(msg + "Você deseja atualizar esta locação?"))
 			atualizaLocacao();
 });
 

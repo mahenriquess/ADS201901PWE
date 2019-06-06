@@ -37,7 +37,7 @@ $('#btn-cad-vei').click(function(){
 				cor: $('#formCadVei-cor').val(),
 				categoria: $('#formCadVei-categoria').val(),
 				ano: $('#formCadVei-ano').val(),
-				valor: parseFloat($('#formCadVei-valor').val()),
+				valor: parseFloat($('#formCadVei-valor').cleanVal() / 100),
 				combustivel: $("input[name='combustivel']:checked").val(),
 				observacao: $('#formCadVei-observacao').val(),
 				km: $('#formCadVei-km').val() 
@@ -58,7 +58,7 @@ $('#btn-cad-vei').click(function(){
 					$('#loader').removeClass('bg-danger text-center text-white');
 					$('#loader').addClass('bg-success text-center text-white');
 					$('#loader').html("Veículo cadastrado com sucesso!");
-					$('#formCadVei input').val("");
+					$("#formCadVei input[type='text']").val("");
 					$('#formCadVei textarea').val("");
 					listarVeiculos();
 				} else {
@@ -147,7 +147,7 @@ function validaPlaca(placa){
 
 function validaAno(ano){
 	var year = new Date();
-	return (ano > 1930 && ano < year.getFullYear());
+	return (ano > 1930 && ano < year.getFullYear() + 1);
 }
 
 function validaTamanhoCampos(campo){

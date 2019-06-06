@@ -12,16 +12,7 @@
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.sql.SQLException"%>
 <%
-	/*
-			id: $('#modal-locacao-id').val(),
-			cliente: $('#modal-locacao-cliente').val(),
-			veiculo: $('#modal-locacao-veiculo').val(),
-			datahora: $('#modal-locacao-datahora').val(),
-			dias: $('#modal-locacao-dias').val(),
-			valor: $('#modal-locacao-valor').val(),
-			devolucao: $('#modal-locacao-devolucao').val(),
-			status: $('#modal-locacao-status').val()
-	*/
+
 	String id = request.getParameter("id");
 	String cliente = request.getParameter("cliente");
 	String veiculo = request.getParameter("veiculo");

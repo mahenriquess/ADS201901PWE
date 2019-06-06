@@ -12,7 +12,7 @@ $('#btn-atualiza-veiculo').click(function(){
 				cor: $('#modal-cor').val(),
 				categoria: $('#modal-categoria').val(),
 				ano: $('#modal-ano').val(),
-				valor: parseFloat($('#modal-valor').val()),
+				valor: parseFloat($('#modal-valor').cleanVal() / 100),
 				combustivel: $("input[name='modal-combustivel']:checked").val(),
 				situacao: $('#modal-situacao').val(),
 				observacao: $('#modal-observacao').val(),
@@ -37,6 +37,7 @@ $('#btn-atualiza-veiculo').click(function(){
 					listarVeiculos();
 				} else {
 					alert("Você não pode atualizar um veículo que esteja INDISPONÍVEL.");
+					$('#modal-loader').empty();
 				}
 			},
 			
@@ -44,10 +45,9 @@ $('#btn-atualiza-veiculo').click(function(){
 				$('#modal-loader').empty();
 				$('#modal-loader').addClass('bg-info text-center text-white');
 				$('#modal-loader').html("Temporariamente indisponível. Tente novamente mais tarde.");
-			},
+			}
 		});
 	}
-	
 	
 	$('#modalSelecionaVeiculo').modal('hide');
 });

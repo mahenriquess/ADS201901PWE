@@ -23,8 +23,9 @@
 	
 	Veiculo vei = new Veiculo(id, placa, marca, modelo, cor, categoria, ano, valor, combustivel, situacao, observacao, km);
 	VeiculoDAO veiDAO = new VeiculoDAO();
-
-	resultado = veiDAO.atualizarVeiculo(vei.toArray());	
+	
+	if(situacao.equals("Disponível"))
+		resultado = veiDAO.atualizarVeiculo(vei.toArray());	
 	
 	String json = new Gson().toJson(resultado);
 	response.setContentType("application/json");

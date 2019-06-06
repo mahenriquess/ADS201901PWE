@@ -1,3 +1,6 @@
+<%@page import="dao.VeiculoDAO"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dao.LocacaoDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -10,7 +13,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">DEVOLVER VEÍCULO</h5>
+					<h5 class="modal-title">Locação Selecionada</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Fechar">
 						<span aria-hidden="true">&times;</span>
@@ -55,8 +58,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Voltar</button>
-					<button type="button" class="btn btn-success" id="btn-devolve-veiculo">Devolver
-						Veículo</button>
+					<button type="button" class="btn btn-success" id="btn-devolve-veiculo">Atualizar Locação</button>
 				</div>
 			</div>
 		</div>
@@ -69,7 +71,7 @@
 				<th>ID</th>
 				<th>STATUS</th>
 				<th>CÓD. CLIENTE</th>
-				<th>CÓD. VEÍCULO</th>
+				<th>PLACA VEÍCULO</th>
 				<th>DATA LOCAÇÃO</th>
 				<th>DATA DEVOLUÇÃO</th>
 				<th>DIAS ALUGADOS</th>
@@ -82,15 +84,23 @@
 		
 		LocacaoDAO locDao = new LocacaoDAO();
 		ResultSet rsLoc = locDao.selecionarLocacoes("");
-	
+		
 		while(rsLoc.next()){
+			
+			VeiculoDAO veiDAO = new VeiculoDAO();
+			ResultSet rsVei = veiDAO.selecionarVeiculo("veiID = '" + rsLoc.getString("locacaoVeiculo") + "'");
+			
+			String locacaoVeiculo = null;
+			while(rsVei.next()){
+				locacaoVeiculo = rsVei.getString("veiPlaca");
+			}
+			
 			String locacaoID = rsLoc.getString("locacaoID");
 			String locacaoCli = rsLoc.getString("locacaoCli");
-			String locacaoVeiculo = rsLoc.getString("locacaoVeiculo");
-			String locacaoDataHora = rsLoc.getString("locacaoDataHora");
+			String locacaoDataHora = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDataHora")));
 			String locacaoDias = rsLoc.getString("locacaoDias");
 			String locacaoValor = rsLoc.getString("locacaoValor");
-			String locacaoDevolucao = rsLoc.getString("locacaoDevolucao");
+			String locacaoDevolucao = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDevolucao")));
 			String locacaoStatus = rsLoc.getString("locacaoStatus");
 			
 			String classeLink = "btn "; 
@@ -129,7 +139,7 @@
             "bPaginate": true,
             "oLanguage": {
                   "sEmptyTable": "Nenhum registro encontrado",
-                  "sInfo": "Veículos cadastrados no sistema",
+                  "sInfo": "Locações cadastradas no sistema",
                   "sInfoEmpty": "Mostrando 0 até de 0 registros",
 				"sInfoFiltered": "(Filtrados de _MAX_ registros)", 
                   "sInfoPostFix": "",
