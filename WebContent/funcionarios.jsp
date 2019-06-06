@@ -115,7 +115,6 @@
 		  <div id="listaFuncionarios"></div>
 		</div>
 	</div>
-	</div>
 	<script src="resources/js/scriptFuncionarios.js"></script>
 </body>
 </html>

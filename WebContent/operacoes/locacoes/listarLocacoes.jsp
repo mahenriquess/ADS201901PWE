@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="dao.VeiculoDAO"%>
 <%@page import="dao.LocacaoDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -69,7 +72,7 @@
 				<th>ID</th>
 				<th>STATUS</th>
 				<th>CÓD. CLIENTE</th>
-				<th>CÓD. VEÍCULO</th>
+				<th>PLACA VEÍCULO</th>
 				<th>DATA LOCAÇÃO</th>
 				<th>DATA DEVOLUÇÃO</th>
 				<th>DIAS ALUGADOS</th>
@@ -84,14 +87,26 @@
 		ResultSet rsLoc = locDao.selecionarLocacoes("");
 	
 		while(rsLoc.next()){
+
 			String locacaoID = rsLoc.getString("locacaoID");
 			String locacaoCli = rsLoc.getString("locacaoCli");
 			String locacaoVeiculo = rsLoc.getString("locacaoVeiculo");
-			String locacaoDataHora = rsLoc.getString("locacaoDataHora");
+			String locacaoDataHora = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDataHora")));
 			String locacaoDias = rsLoc.getString("locacaoDias");
 			String locacaoValor = rsLoc.getString("locacaoValor");
-			String locacaoDevolucao = rsLoc.getString("locacaoDevolucao");
+			String locacaoDevolucao = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDevolucao")));
 			String locacaoStatus = rsLoc.getString("locacaoStatus");
+			
+			VeiculoDAO veiDAO = new VeiculoDAO();
+			String locacaoVeiculoPlaca = null;
+			try {
+				ResultSet rsVei = veiDAO.selecionarVeiculo("veiID = '" + locacaoVeiculo + "'");
+				while(rsVei.next()){
+					locacaoVeiculoPlaca = rsVei.getString("veiPlaca");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 			String classeLink = "btn "; 
 			classeLink += locacaoStatus.equals("Pendente") ? "btn-success" : "btn-danger";
@@ -101,7 +116,7 @@
 				out.println("<td><a class='"+ classeLink + "' role='button' rel='" + locacaoID + "' href='#'>" + locacaoID + "</a></td>");
 				out.println("<td>" + locacaoStatus + "</td>");
 				out.println("<td>" + locacaoCli + "</td>");
-				out.println("<td>" + locacaoVeiculo + "</td>");
+				out.println("<td>" + locacaoVeiculoPlaca + "</td>");
 				out.println("<td>" + locacaoDataHora + "</td>");
 				out.println("<td>" + locacaoDevolucao + "</td>");
 				out.println("<td>" + locacaoDias + "</td>");
@@ -129,7 +144,7 @@
             "bPaginate": true,
             "oLanguage": {
                   "sEmptyTable": "Nenhum registro encontrado",
-                  "sInfo": "Veículos cadastrados no sistema",
+                  "sInfo": "Locações cadastradas no sistema",
                   "sInfoEmpty": "Mostrando 0 até de 0 registros",
 				"sInfoFiltered": "(Filtrados de _MAX_ registros)", 
                   "sInfoPostFix": "",

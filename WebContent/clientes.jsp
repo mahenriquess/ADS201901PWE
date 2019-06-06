@@ -120,7 +120,6 @@
 		  <div id="listaClientes"></div>
 		</div>
 	</div>
-	</div>
 	<script src="resources/js/scriptClientes.js"></script>
 </body>
 </html>
