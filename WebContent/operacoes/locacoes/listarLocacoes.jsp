@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dao.VeiculoDAO"%>
-=======
 <%@page import="dao.VeiculoDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
->>>>>>> revisaoProjeto-06062019
 <%@page import="dao.LocacaoDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -92,29 +89,18 @@
 		ResultSet rsLoc = locDao.selecionarLocacoes("");
 		
 		while(rsLoc.next()){
-<<<<<<< HEAD
 
 			String locacaoID = rsLoc.getString("locacaoID");
 			String locacaoCli = rsLoc.getString("locacaoCli");
 			String locacaoVeiculo = rsLoc.getString("locacaoVeiculo");
-			
 			VeiculoDAO veiDAO = new VeiculoDAO();
-			ResultSet rsVei = veiDAO.selecionarVeiculo("veiID = '" + rsLoc.getString("locacaoVeiculo") + "'");
 			
-			String locacaoVeiculo = null;
-			while(rsVei.next()){
-				locacaoVeiculo = rsVei.getString("veiPlaca");
-			}
-			
-			String locacaoID = rsLoc.getString("locacaoID");
-			String locacaoCli = rsLoc.getString("locacaoCli");
 			String locacaoDataHora = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDataHora")));
 			String locacaoDias = rsLoc.getString("locacaoDias");
 			String locacaoValor = rsLoc.getString("locacaoValor");
 			String locacaoDevolucao = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(rsLoc.getString("locacaoDevolucao")));
 			String locacaoStatus = rsLoc.getString("locacaoStatus");
 			
-			VeiculoDAO veiDAO = new VeiculoDAO();
 			String locacaoVeiculoPlaca = null;
 			try {
 				ResultSet rsVei = veiDAO.selecionarVeiculo("veiID = '" + locacaoVeiculo + "'");
